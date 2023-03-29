@@ -1,4 +1,4 @@
-Terrapin, not turtle
+= Terrapin, not turtle
 --------------------
 
 Terrapin is just a project to make non-realtime turtle graphics with common lisp. By non realtime I mean
@@ -6,7 +6,7 @@ I can't be bothered to deal with SDL2 right now so I'm just rendering it all to 
 under the flimsy hood.
 
 I'm making this as a way to dip a single toe into CLOS, packaging a system, and also so I can work through 
-Turtle Geometry by Harold Abelson and Andrea A. diSessa. I have some ideas for further down the road,
+https://mitpress.mit.edu/9780262510370/turtle-geometry/[Turtle Geometry by Harold Abelson and Andrea A. diSessa.] I have some ideas for further down the road,
 depending on how much I enjoy this method of drawing squiggles.
 
 go terps btw
