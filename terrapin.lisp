@@ -1,8 +1,17 @@
 (ql:quickload :vecto)
-(defpackage :terp
-  (:use :cl :vecto))
+(defpackage :terrapin
+  (:use :cl :vecto)
+  (:export
+   #:init
+   #:goto
+   #:toggle-pen
+   #:right
+   #:left
+   #:forward
+   #:back
+   #:terp-go))
 
-(in-package :terp)
+(in-package :terrapin)
 
 (defclass terp ()
   ((x
@@ -69,7 +78,7 @@
     "backin up"
     (forward (- steps))))
 
-(defun init (w h &optional (title "terp.png"))
+(defun init (w h &optional (title "terapin.png"))
   "initialize some globals"
   (defparameter *width* w)
   (defparameter *height* h)
