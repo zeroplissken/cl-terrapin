@@ -19,7 +19,7 @@
     :accessor angle)
    (pen-down
     :initarg :pen-down
-    :initform nil
+    :initform t
     :accessor pen-down)))
 
 (defun init-func (turtle)
@@ -31,11 +31,14 @@
     (setf (y turtle) y)
     (setf (angle turtle) angle))
 
+  (defun toggle-pen ()
+    (if (pen-down turtle)
+      (setf (pen-down turtle) nil)
+      (setf (pen-down turtle) t)))
+
   (defun left (degrees)
     (let ((a (angle turtle)))
-      (setf a (+ degrees))
-      (if (< a 0) (setf a (+ a 360)))
-      (if (> a 360) (setf a (- a 360)))))
+      (setf (angle turtle) (+ a degrees))))
 
   (defun right (degrees)
     (left (- degrees)))
@@ -48,25 +51,28 @@
             (dest-y y))
         (setf dest-x (+ dest-x (* steps (cos (to-radians angle)))))
         (setf dest-y (- dest-y (* steps (sin (to-radians angle)))))
-        (move-to x y)
-        (line-to dest-x dest-y)
+        (if (pen-down turtle)
+          (progn
+            (move-to (x turtle) (y turtle))
+            (line-to dest-x dest-y)))
+        (setf (x turtle) dest-x)
+        (setf (y turtle) dest-y)
         (stroke))))
 
   (defun back (steps)
     (forward (- steps))))
 
-(defun init (w h &optional (title "trtle.png"))
+(defun init (w h &optional (title "terp.png"))
   (defparameter *width* w)
   (defparameter *height* h)
   (defparameter *file* title))
 
 (defmacro terp-go (&rest body)
-  `(let ((turtle (make-instance 'trtl :x (/ *width* 2) :y (/ *height* 2))))
+  `(let ((turtle (make-instance 'terp :x (/ *width* 2) :y (/ *height* 2))))
      (init-func turtle)
      (with-canvas (:width *width* :height *height*)
        (rectangle 0 0 *width* *height*)
        (set-rgb-fill 1 1 1)
        (fill-path)
        ,@body
-       
        (save-png *file*))))
