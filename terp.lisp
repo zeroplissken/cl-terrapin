@@ -40,14 +40,13 @@
       (setf (pen-down turtle) nil)
       (setf (pen-down turtle) t)))
 
-  (defun left (degrees)
-    "add degrees to turtle angle"
-    (let ((a (angle turtle)))
-      (setf (angle turtle) (+ a degrees))))
-
   (defun right (degrees)
-    "right is one backwards left"
-    (left (- degrees)))
+    "add degrees to turtle angle"
+    (setf (angle turtle) (+ (angle turtle) degrees)))
+
+  (defun left (degrees)
+    "left is one backwards right"
+    (right (- degrees)))
 
   (defun forward (steps)
     "move forward at angle. if pen-down is t, draw a line"

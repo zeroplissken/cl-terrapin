@@ -1,17 +1,16 @@
 = Terrapin, not turtle
 --------------------
 
-Terrapin is just a project to make non-realtime turtle graphics with common lisp. By non realtime I mean
-I can't be bothered to deal with SDL2 right now so I'm just rendering it all to a .png. It uses https://www.xach.com/lisp/vecto/[Vecto] under the flimsy hood.
+Terrapin is just a quick thing to make non-realtime turtle graphics with common lisp. 
 
-I'm making this as a way to dip a single toe into CLOS, packaging a system, and also so I can work through 
-https://mitpress.mit.edu/9780262510370/turtle-geometry/[Turtle Geometry by Harold Abelson and Andrea A. diSessa.] I have some ideas for further down the road, depending on how much I enjoy this method of drawing squiggles.
+By non realtime I mean I can't be bothered to deal with SDL2 right now so I'm just rendering it all to a .png. It uses https://www.xach.com/lisp/vecto/[Vecto] under the flimsy hood.
 
-Usage
--------
-Call ``(init <width> <height> <output path.png>)`` first. Then use the ``terp-go`` macro.
-Basic commands are ``(forward _steps_)``, ``(back _steps_)``, ``(left _degrees_)``, (right _degrees_)``, and ``(toggle-pen)``.
+I'm making this so I can work through https://mitpress.mit.edu/9780262510370/turtle-geometry/[Turtle Geometry by Harold Abelson and Andrea A. diSessa]. I have some ideas for further down the road, depending on how much I enjoy this method of drawing squiggles.
 
-A list of advanced commands can be found https://novaspec.org[here].
+== Usage
+
+Call ``(init <width> <height> <output path>)`` first. Then use ``(terp-go @body)`` to direct your terrapin around the canvas. You can use ``(forward <steps>), (back <steps>), (left <angle>), (right <angle>),`` and ``(toggle-pen)``.
+
+A list of advanced commands can be found https://novaspec.org/cl/[here].
 
 go terps btw
