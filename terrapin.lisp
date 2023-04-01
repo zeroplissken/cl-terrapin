@@ -5,6 +5,8 @@
    #:init
    #:goto
    #:toggle-pen
+   #:pen-up
+   #:pen-down
    #:right
    #:left
    #:forward
@@ -26,10 +28,10 @@
     :initarg :angle
     :initform 0
     :accessor angle)
-   (pen-down
-    :initarg :pen-down
+   (pen
+    :initarg :pen
     :initform t
-    :accessor pen-down)))
+    :accessor pen)))
 
 (defun init-func (turtle)
   "intialize functions with the turtle object"
@@ -45,9 +47,15 @@
 
   (defun toggle-pen ()
     "toggles pen up and down"
-    (if (pen-down turtle)
-      (setf (pen-down turtle) nil)
-      (setf (pen-down turtle) t)))
+    (if (pen turtle)
+      (setf (pen turtle) nil)
+      (setf (pen turtle) t)))
+
+  (defun pen-up ()
+    (setf (pen turtle) nil))
+
+  (defun pen-down ()
+    (setf (pen turtle) t))
 
   (defun right (degrees)
     "add degrees to turtle angle"
@@ -66,7 +74,7 @@
             (dest-y y))
         (setf dest-x (+ dest-x (* steps (cos (to-radians angle)))))
         (setf dest-y (- dest-y (* steps (sin (to-radians angle)))))
-        (if (pen-down turtle)
+        (if (pen turtle)
           (progn
             (move-to (x turtle) (y turtle))
             (line-to dest-x dest-y)))
