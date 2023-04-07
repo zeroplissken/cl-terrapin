@@ -1,19 +1,6 @@
-(ql:quickload :vecto)
-(defpackage :terrapin
-  (:use :cl :vecto)
-  (:export
-   #:init
-   #:goto
-   #:toggle-pen
-   #:pen-up
-   #:pen-down
-   #:right
-   #:left
-   #:forward
-   #:back
-   #:terp-go))
+;;; the terp object ;;;
 
-(in-package :terrapin)
+(in-package #:terrapin)
 
 (defclass terp ()
   ((x
@@ -32,6 +19,7 @@
     :initarg :pen
     :initform t
     :accessor pen)))
+
 
 (defun init-func (turtle)
   "intialize functions with the turtle object"
@@ -86,19 +74,30 @@
     "backin up"
     (forward (- steps))))
 
+(defmacro init-terp (name x y)
+  `(defvar ,name (make-instance 'terp :x ,x :y ,y)))
+
+
 (defun init (w h &optional (title "terapin.png"))
   "initialize some globals"
   (defparameter *width* w)
   (defparameter *height* h)
-  (defparameter *file* title))
+  (defparameter *file* title)
+  (init-terp turtle (/ *width* 2) (/ *height* 2)))
+
+(defun reset-terp (turtle)
+  (setf (x turtle) (/ *width* 2))
+  (setf (y turtle) (/ *height* 2)))
 
 (defmacro terp-go (&rest body)
   "the basic terrapin macro. Send terp wherever you want, with whatever code."
-  `(let ((turtle (make-instance 'terp :x (/ *width* 2) :y (/ *height* 2))))
-     (init-func turtle)
-     (with-canvas (:width *width* :height *height*)
-       (rectangle 0 0 *width* *height*)
-       (set-rgb-fill 1 1 1)
-       (fill-path)
-       ,@body
-       (save-png *file*))))
+  (init-func turtle)
+  (reset-terp turtle)
+  `(with-canvas (:width *width* :height *height*)
+     (rectangle 0 0 *width* *height*)
+     (set-rgb-fill 1 1 1)
+     (fill-path)
+     ,@body
+     (save-png *file*)))
+
+

@@ -1,3 +1,4 @@
 (defsystem "terrapin"
 	:depends-on ("vecto")
-	:components ((:file "terrapin")))
+	:components ((:file "package")
+				 (:file "terrapin")))
