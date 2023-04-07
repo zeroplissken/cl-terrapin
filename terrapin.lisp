@@ -87,7 +87,8 @@
 
 (defun reset-terp (turtle)
   (setf (x turtle) (/ *width* 2))
-  (setf (y turtle) (/ *height* 2)))
+  (setf (y turtle) (/ *height* 2))
+  (setf (angle turtle) 0))
 
 (defmacro terp-go (&rest body)
   "the basic terrapin macro. Send terp wherever you want, with whatever code."
