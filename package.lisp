@@ -1,5 +1,6 @@
 (defpackage #:terrapin
-  (:use #:cl #:vecto)
+  (:use #:cl)
+  (:local-nicknames (#:v #:vecto))
   (:export
    #:init
    #:goto
@@ -10,5 +11,12 @@
    #:left
    #:forward
    #:back
-   #:terp-go))
+   #:terp-go
+   #:circle
+   #:arc-l
+   #:arc-r
+   #:square
+   #:quad
+   #:poly
+   #:triangle))
 

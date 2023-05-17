@@ -64,17 +64,18 @@
         (setf dest-y (- dest-y (* steps (sin (to-radians angle)))))
         (if (pen turtle)
           (progn
-            (move-to (x turtle) (y turtle))
-            (line-to dest-x dest-y)))
+            (v:move-to (x turtle) (y turtle))
+            (v:line-to dest-x dest-y)))
         (setf (x turtle) dest-x)
         (setf (y turtle) dest-y)
-        (stroke))))
+        (v:stroke))))
 
   (defun back (steps)
     "backin up"
     (forward (- steps))))
 
 (defmacro init-terp (name x y)
+  "creates a turtle object"
   `(defvar ,name (make-instance 'terp :x ,x :y ,y)))
 
 
@@ -94,11 +95,11 @@
   "the basic terrapin macro. Send terp wherever you want, with whatever code."
   (init-func turtle)
   (reset-terp turtle)
-  `(with-canvas (:width *width* :height *height*)
-     (rectangle 0 0 *width* *height*)
-     (set-rgb-fill 1 1 1)
-     (fill-path)
+  `(v:with-canvas (:width *width* :height *height*)
+     (v:rectangle 0 0 *width* *height*)
+     (v:set-rgb-fill 1 1 1)
+     (v:fill-path)
      ,@body
-     (save-png *file*)))
+     (v:save-png *file*)))
 
 
