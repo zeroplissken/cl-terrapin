@@ -20,21 +20,20 @@ I'm making this so I can work through https://mitpress.mit.edu/9780262510370/tur
 Call ``(init <width> <height> <output path>)`` first. Then use ``(terp @body)`` to direct your terrapin around the canvas.
 
 === Commands
-``(forward|back <steps>)
-(left|right <degrees>)
-(pen-up|pen-down|toggle-pen)
-(goto <x> <y>)
+`(forward|back <steps>)` +
+`(left|right <degrees>)` +
+`(pen-up|pen-down|toggle-pen)` +
+`(goto <x> <y>)` +
 
-;;some shapes
-(circle <radius>)
-(arcl-l <radius>)
-(arc-r <radius>)
-(square <size>)
-(quad <side1> <side 2>)
-(poly <segment length> <degrees>)
-(triangle <segment length>)``
+`(circle <radius>)` +
+`(arcl-l <radius>)` +
+`(arc-r <radius>)` +
+`(square <size>)` +
+`(quad <side1> <side 2>)` +
+`(poly <segment length> <degrees>)` +
+`(triangle <segment length>)` 
 
-You can, of course, intersperse Vecto procedures in the terp program as well.
+You can, of course, intersperse Vecto procedures in the terp program as well. They won't affect the position of the turtle you're using.
 
 A list of advanced commands can be found https://novaspec.org/cl/[here].
 
